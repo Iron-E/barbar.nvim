@@ -143,7 +143,7 @@ local function render()
 
       if has_icons then
         local iconChar, iconHl = get_icon(buffer_name, vim.fn.getbufvar(buffer_number, '&filetype'))
-        iconPrefix = icon .. (is_inactive and hl('BufferInactive') or hl(iconHl or ('Buffer' .. status)))
+        iconPrefix = icon .. hl(is_inactive and 'BufferInactive' or iconHl or ('Buffer' .. status))
         icon = iconChar .. ' '
       end
     end
@@ -239,9 +239,7 @@ local function render()
   result = result .. '%0@BufferlineMainClickHandler@'
 
   if layout.actual_width + 1 <= layout.buffers_width and len(items) > 0 then
-    local separatorPrefix = hl('BufferInactiveSign')
-    local separator = icons.separator_inactive
-    result = result .. separatorPrefix .. separator
+    result = result .. hl('BufferTabpageSpacer') .. icons.separator_inactive
   end
 
   local current_tabpage = vim.fn.tabpagenr()
