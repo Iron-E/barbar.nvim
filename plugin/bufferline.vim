@@ -204,6 +204,7 @@ endfunc
 "========================
 
 function! s:on_buffer_open(abuf)
+   lua require'bufferline.state'.update_names()
    call luaeval("require'bufferline.jump_mode'.assign_next_letter(_A)", a:abuf)
 endfunc
 
