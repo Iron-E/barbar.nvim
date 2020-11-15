@@ -36,7 +36,7 @@ function bufferline#highlight#setup()
    \ ['BufferInactiveSign',   fg_subtle,   bg_inactive],
    \ ['BufferInactiveTarget', fg_target,   bg_inactive,  'bold'],
    \ ['BufferTabpages',       fg_special,  bg_inactive, 'bold'],
-   \ ['BufferTabpageSpacer',  fg_subtle,   bg_current],
+   \ ['BufferTabpageSpacer',  fg_subtle,   'NONE'],
    \ ])
 endfunc
 
