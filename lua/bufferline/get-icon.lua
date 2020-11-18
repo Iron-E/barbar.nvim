@@ -5,6 +5,10 @@
 local nvim = require'bufferline.nvim'
 local status, web = pcall(require, 'nvim-web-devicons')
 
+local function get_attr(group, attr)
+  return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
+end
+
 local function get_icon(buffer_name, filetype, buffer_status)
   if status == false then
     nvim.command('echohl WarningMsg')
@@ -29,14 +33,13 @@ local function get_icon(buffer_name, filetype, buffer_status)
   local iconChar, iconHl = web.get_icon(basename, extension, { default = true })
 
   if iconHl and vim.fn.hlexists(iconHl..buffer_status) < 1 then
-    local function get_attr(group, attr)
-      return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
-    end
-
-    local iconHl_foreground = get_attr(iconHl, 'fg#')
     local buffer_background = get_attr('Buffer'..buffer_status, 'bg#')
 
-    vim.cmd('hi! ' .. iconHl .. buffer_status .. ' guifg=' .. iconHl_foreground .. ' guibg=' .. (buffer_background ~= '' and buffer_background or 'NONE'))
+    nvim.command(
+      'hi! ' .. iconHl .. buffer_status ..
+      ' guifg=' .. get_attr(iconHl, 'fg#') ..
+      ' guibg=' .. (buffer_background ~= '' and buffer_background or 'NONE')
+    )
   end
 
   return iconChar, iconHl..buffer_status
