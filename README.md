@@ -180,7 +180,7 @@ let bufferline.maximum_padding = 4
 
 ### Highlighting
 
-For the highligh groups, here are the default ones. Your colorscheme
+For the highlight groups, here are the default ones. Your colorscheme
 can override them by defining them.
 
 ```vim
@@ -218,6 +218,8 @@ function bufferline#highlight#setup()
    \ ['BufferInactiveMod',    fg_modified, bg_inactive],
    \ ['BufferInactiveSign',   fg_subtle,   bg_inactive],
    \ ['BufferInactiveTarget', fg_target,   bg_inactive,  'bold'],
+   \ ['BufferTabpages',       fg_special,  bg_inactive, 'bold'],
+   \ ['BufferTabpageFill',    fg_inactive, bg_inactive],
    \ ])
 endfunc
 ```
