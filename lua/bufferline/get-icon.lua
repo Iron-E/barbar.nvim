@@ -6,7 +6,7 @@ local nvim = require'bufferline.nvim'
 local status, web = pcall(require, 'nvim-web-devicons')
 
 local function get_attr(group, attr)
-  local rgb_val = nvim.get_hl_by_name(group, true)[attr]
+  local rgb_val = (nvim.get_hl_by_name(group, true) or {})[attr]
 
   return rgb_val and string.format('#%06x', rgb_val) or 'NONE'
 end
