@@ -86,7 +86,6 @@ command! -bang -complete=buffer -nargs=?
 let bufferline = extend({
 \ 'shadow': v:true,
 \ 'animation': v:true,
-\ 'icons': v:true,
 \ 'closable': v:true,
 \ 'semantic_letters': v:true,
 \ 'clickable': v:true,
@@ -97,7 +96,7 @@ let bufferline = extend({
 \}, get(g:, 'bufferline', {}))
 
 " Default icons
-let icons = extend({
+let bufferline.icons = extend({
 \ 'bufferline_default_file': '',
 \ 'bufferline_separator_active':   '▎',
 \ 'bufferline_separator_inactive': '▎',
@@ -105,7 +104,7 @@ let icons = extend({
 \ 'bufferline_close_tab_modified': '●',
 \ 'bufferline_arrow_left': '',
 \ 'bufferline_arrow_right': '',
-\}, get(g:, 'icons', {})) " 
+\}, type(bufferline.icons) == v:t_bool ? {'devicons': bufferline.icons} : bufferline.icons)
 
 "==========================
 " Section: Bufferline state

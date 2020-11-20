@@ -82,7 +82,7 @@ local function render()
   end
 
   local opts = vim.g.bufferline
-  local icons = vim.g.icons
+  local icons = opts.icons
 
   local click_enabled = vim.fn.has('tablineat') and opts.clickable
   local has_icons = opts.icons ~= false
