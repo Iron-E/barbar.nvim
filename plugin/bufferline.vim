@@ -100,7 +100,7 @@ if type(bufferline.icons) == v:t_bool
   let bufferline.icons = {'devicons': bufferline.icons}
 " Older bufferline.icons = 'numbers' configurations
 elseif type(bufferline.icons) == v:t_string
-  let bufferline.icons = {'numbers': bufferline.icons}
+  let bufferline.icons = {'numbers': v:true}
 endif
 
 " Default icons
@@ -112,6 +112,8 @@ let bufferline.icons = extend({
 \ 'bufferline_close_tab_modified': '●',
 \ 'bufferline_arrow_left': '',
 \ 'bufferline_arrow_right': '',
+\ 'devicons': v:true,
+\ 'numbers': v:false,
 \}, bufferline.icons)
 
 "==========================
