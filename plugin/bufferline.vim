@@ -95,6 +95,14 @@ let bufferline = extend({
 \ 'letters': 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP',
 \}, get(g:, 'bufferline', {}))
 
+" Older bufferline.icons = v:true/v:false configurations
+if type(bufferline.icons) == v:t_bool
+  let bufferline.icons = {'devicons': bufferline.icons}
+" Older bufferline.icons = 'numbers' configurations
+elseif type(bufferline.icons) == v:t_string
+  let bufferline.icons = {'numbers': bufferline.icons}
+endif
+
 " Default icons
 let bufferline.icons = extend({
 \ 'bufferline_default_file': '',
@@ -104,7 +112,7 @@ let bufferline.icons = extend({
 \ 'bufferline_close_tab_modified': '●',
 \ 'bufferline_arrow_left': '',
 \ 'bufferline_arrow_right': '',
-\}, type(bufferline.icons) == v:t_bool ? {'devicons': bufferline.icons} : bufferline.icons)
+\}, bufferline.icons)
 
 "==========================
 " Section: Bufferline state
