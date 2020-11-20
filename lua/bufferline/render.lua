@@ -67,8 +67,8 @@ local function slice_groups_left(groups, width)
   return result
 end
 
-local function render()
-  local buffer_numbers = state.get_updated_buffers()
+local function render(update_names)
+  local buffer_numbers = state.get_updated_buffers(update_names)
   local current = vim.fn.bufnr('%')
 
   -- Store current buffer to open new ones next to this one
@@ -142,7 +142,7 @@ local function render()
       end
 
       if has_icons then
-        local iconChar, iconHl = get_icon(buffer_name, vim.fn.getbufvar(buffer_number, '&filetype'))
+        local iconChar, iconHl = get_icon(buffer_name, vim.fn.getbufvar(buffer_number, '&filetype'), status)
         iconPrefix = icon .. hl(is_inactive and 'BufferInactive' or iconHl or ('Buffer' .. status))
         icon = iconChar .. ' '
       end
@@ -261,8 +261,8 @@ local function render()
   return result
 end
 
-local function render_safe()
-  local ok, result = pcall(render)
+local function render_safe(update_names)
+  local ok, result = pcall(render, update_names)
   return {ok, tostring(result)}
 end
 
