@@ -85,8 +85,8 @@ local function render()
   local icons = opts.icons
 
   local click_enabled = vim.fn.has('tablineat') and opts.clickable
-  local has_icons = opts.icons ~= false
-  local has_numbers = opts.icons == 'numbers'
+  local has_icons = opts.icons.devicons == true
+  local has_numbers = opts.icons.numbers == true
   local has_close = opts.closable
 
   local layout = Layout.calculate(state)
