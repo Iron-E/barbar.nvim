@@ -25,6 +25,7 @@ function! bufferline#enable()
       augroup bufferline_update
          au!
          au BufNew                 * call bufferline#update()
+         au BufNewFile             * lua  require'bufferline.state'.update_names()
          au BufEnter               * call bufferline#update()
          au BufWipeout             * call bufferline#update()
          au BufWinEnter            * call bufferline#update()
@@ -204,7 +205,6 @@ endfunc
 "========================
 
 function! s:on_buffer_open(abuf)
-   lua require'bufferline.state'.update_names()
    call luaeval("require'bufferline.jump_mode'.assign_next_letter(_A)", a:abuf)
 endfunc
 
