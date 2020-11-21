@@ -95,7 +95,7 @@ let bufferline = extend({
 \ 'letters': 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP',
 \}, get(g:, 'bufferline', {}))
 
-function! bufferline#init_icons()
+function! bufferline#init_icons() abort
   " Older bufferline.icons = v:true/v:false configurations
   if type(g:bufferline.icons) == v:t_bool
     let g:bufferline.icons = {'devicons': g:bufferline.icons}
@@ -116,6 +116,8 @@ function! bufferline#init_icons()
   \ 'devicons': v:true,
   \ 'numbers': v:false,
   \}, g:bufferline.icons)
+
+  return g:bufferline.icons
 endfu
 
 call bufferline#init_icons()

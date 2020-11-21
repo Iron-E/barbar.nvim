@@ -82,10 +82,9 @@ local function render()
   end
 
   local opts = vim.g.bufferline
-  local icons = opts.icons
 
-  -- Convert an old setting scheme to a new setting scheme
-  if type(icons) ~= 'table' then vim.fn['bufferline#init_icons']() end
+  -- Ensure that the new setting scheme is adhered to.
+  local icons = type(opts.icons) == 'table' and opts.icons or vim.fn['bufferline#init_icons']()
 
   local click_enabled = vim.fn.has('tablineat') and opts.clickable
   local has_icons = icons.devicons == true
