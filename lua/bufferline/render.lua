@@ -84,9 +84,12 @@ local function render()
   local opts = vim.g.bufferline
   local icons = opts.icons
 
+  -- Convert an old setting scheme to a new setting scheme
+  if type(icons) ~= 'table' then vim.fn['bufferline#init_icons']() end
+
   local click_enabled = vim.fn.has('tablineat') and opts.clickable
-  local has_icons = opts.icons.devicons == true
-  local has_numbers = opts.icons.numbers == true
+  local has_icons = icons.devicons == true
+  local has_numbers = icons.numbers == true
   local has_close = opts.closable
 
   local layout = Layout.calculate(state)
@@ -103,6 +106,7 @@ local function render()
       buffer_name, layout.base_width, layout.padding_width)
 
     local activity = Buffer.get_activity(buffer_number)
+    local is_inactive = activity == 0
     local is_visible = activity == 1
     local is_current = activity == 2
     -- local is_inactive = activity == 0
@@ -113,7 +117,7 @@ local function render()
     local mod = is_modified and 'Mod' or ''
 
     local separatorPrefix = hl('Buffer' .. status .. 'Sign')
-    local separator = status == 'Inactive' and
+    local separator = is_inactive and
       icons.bufferline_separator_inactive or
       icons.bufferline_separator_active
 
@@ -131,14 +135,16 @@ local function render()
       icon =
         (letter ~= nil and letter or ' ') ..
         (has_icons and ' ' or '')
-    elseif has_icons then
+    else
       if has_numbers then
         local number_text = tostring(i)
         iconPrefix = ''
-        icon = number_text .. (#number_text > 1 and '' or ' ')
-      else
+        icon = icon .. number_text .. ' '
+      end
+
+      if has_icons then
         local iconChar, iconHl = get_icon(buffer_name, vim.fn.getbufvar(buffer_number, '&filetype'))
-        iconPrefix = status == 'Inactive' and hl('BufferInactive') or hl(iconHl or ('Buffer' .. status))
+        iconPrefix = icon .. (is_inactive and hl('BufferInactive') or hl(iconHl or ('Buffer' .. status)))
         icon = iconChar .. ' '
       end
     end

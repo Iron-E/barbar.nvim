@@ -95,26 +95,30 @@ let bufferline = extend({
 \ 'letters': 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP',
 \}, get(g:, 'bufferline', {}))
 
-" Older bufferline.icons = v:true/v:false configurations
-if type(bufferline.icons) == v:t_bool
-  let bufferline.icons = {'devicons': bufferline.icons}
-" Older bufferline.icons = 'numbers' configurations
-elseif type(bufferline.icons) == v:t_string
-  let bufferline.icons = {'numbers': v:true}
-endif
+function! bufferline#init_icons()
+  " Older bufferline.icons = v:true/v:false configurations
+  if type(g:bufferline.icons) == v:t_bool
+    let g:bufferline.icons = {'devicons': g:bufferline.icons}
+  " Older bufferline.icons = 'numbers' configurations
+  elseif type(g:bufferline.icons) == v:t_string
+    let g:bufferline.icons = {'numbers': v:true}
+  endif
 
-" Default icons
-let bufferline.icons = extend({
-\ 'bufferline_default_file': '',
-\ 'bufferline_separator_active':   '▎',
-\ 'bufferline_separator_inactive': '▎',
-\ 'bufferline_close_tab': '',
-\ 'bufferline_close_tab_modified': '●',
-\ 'bufferline_arrow_left': '',
-\ 'bufferline_arrow_right': '',
-\ 'devicons': v:true,
-\ 'numbers': v:false,
-\}, bufferline.icons)
+  " Default icons
+  let g:bufferline.icons = extend({
+  \ 'bufferline_default_file': '',
+  \ 'bufferline_separator_active':   '▎',
+  \ 'bufferline_separator_inactive': '▎',
+  \ 'bufferline_close_tab': '',
+  \ 'bufferline_close_tab_modified': '●',
+  \ 'bufferline_arrow_left': '',
+  \ 'bufferline_arrow_right': '',
+  \ 'devicons': v:true,
+  \ 'numbers': v:false,
+  \}, g:bufferline.icons)
+endfu
+
+call bufferline#init_icons()
 
 "==========================
 " Section: Bufferline state
