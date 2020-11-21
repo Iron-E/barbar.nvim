@@ -143,9 +143,15 @@ let bufferline = {}
 " Enable/disable animations
 let bufferline.animation = v:true
 
-" Enable/disable icons
-" if set to "numbers", will show buffer index in the tabline
-let bufferline.icons = v:true
+" Configure icons
+let bufferline.icons = {
+\ 'separator_active':   '▎',
+\ 'separator_inactive': '▎',
+\ 'close_tab': '',
+\ 'close_tab_modified': '●',
+\ 'devicons': v:true,
+\ 'numbers': v:false,
+\}
 
 " Enable/disable close button
 let bufferline.closable = v:true
@@ -164,7 +170,7 @@ let bufferline.semantic_letters = v:true
 " New buffer letters are assigned in this order. This order is
 " optimal for the qwerty keyboard layout but might need adjustement
 " for other layouts.
-let bufferline.letters = 
+let bufferline.letters =
   \ 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP'
 
 " Sets the maximum padding width with which to surround each tab
@@ -231,5 +237,5 @@ No, barbar has nothing to do with barbarians.
 
 ## License
 
-barbar.nvim: Distributed under the terms of the JSON license.  
-bbye.vim: Distributed under the terms of the GNU Affero license.  
+barbar.nvim: Distributed under the terms of the JSON license.
+bbye.vim: Distributed under the terms of the GNU Affero license.
