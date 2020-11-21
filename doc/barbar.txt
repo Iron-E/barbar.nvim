@@ -117,10 +117,40 @@ Here are the groups that you should define if you'd like to style Barbar.
 	Enables animations.
 
 							*g:bufferline.icons*
-`g:bufferline.icons`		boolean, string	(default v:true)
+`g:bufferline.icons`		dict (see below)
 
-	Controls if icons are rendered on each tab.
-	If set to "numbers", will show buffer index in the tabline
+	Controls how icons are rendered on each tab.
+
+			              *g:bufferline.icons.separator_active*
+`g:bufferline.icons.separator_active`	string (default '▎')
+
+	The separator for active and visible buffers.
+
+			            *g:bufferline.icons.separator_inactive*
+`g:bufferline.icons.separator_inactive`	string (default '▎')
+
+	The separator for inactive buffers and the `BufferTabpageFill`.
+
+					     *g:bufferline.icons.close_tab*
+`g:bufferline.icons.close_tab`		string (default '')
+
+	The button used to close the tab.
+
+			            *g:bufferline.icons.close_tab_modified*
+`g:bufferline.icons.close_tab_modified`		string (default '●')
+
+	The button used to close the tab when it has been modified since
+	last save.
+
+					      *g:bufferline.icons.devicons*
+`g:bufferline.icons.devicons`		boolean (default v:true)
+
+	If `true`, use `nvim-web-devicons` for each filetype.
+
+					       *g:bufferline.icons.numbers*
+`g:bufferline.icons.numbers`		boolean (default v:false)
+
+	If `true`, display the buffer number for the current buffer.
 
 						    *g:bufferline.closable*
 `g:bufferline.closable`		boolean	(default v:true)
@@ -143,7 +173,7 @@ Here are the groups that you should define if you'd like to style Barbar.
 	optimal for the qwerty keyboard layout but might need adjustement
 	for other layouts.
 >
-        let g:bufferline.letters = 
+        let g:bufferline.letters =
 	  \ 'asdfjkl;ghnmxcbziowerutyqpASDFJKLGHNMXCBZIOWERUTYQP'
 <
 
