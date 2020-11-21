@@ -106,13 +106,10 @@ function! bufferline#init_icons() abort
 
   " Default icons
   let g:bufferline.icons = extend({
-  \ 'bufferline_default_file': '',
-  \ 'bufferline_separator_active':   '▎',
-  \ 'bufferline_separator_inactive': '▎',
-  \ 'bufferline_close_tab': '',
-  \ 'bufferline_close_tab_modified': '●',
-  \ 'bufferline_arrow_left': '',
-  \ 'bufferline_arrow_right': '',
+  \ 'separator_active':   '▎',
+  \ 'separator_inactive': '▎',
+  \ 'close_tab': '',
+  \ 'close_tab_modified': '●',
   \ 'devicons': v:true,
   \ 'numbers': v:false,
   \}, g:bufferline.icons)

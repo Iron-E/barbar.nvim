@@ -117,8 +117,8 @@ local function render()
 
     local separatorPrefix = hl('Buffer' .. status .. 'Sign')
     local separator = is_inactive and
-      icons.bufferline_separator_inactive or
-      icons.bufferline_separator_active
+      icons.separator_inactive or
+      icons.separator_active
 
     local namePrefix = hl('Buffer' .. status .. mod)
     local name =
@@ -153,8 +153,8 @@ local function render()
     if has_close then
       local icon =
         (not is_modified and
-          icons.bufferline_close_tab or
-          icons.bufferline_close_tab_modified)
+          icons.close_tab or
+          icons.close_tab_modified)
 
       closePrefix = namePrefix
       close = icon .. ' '
@@ -240,7 +240,7 @@ local function render()
 
   if layout.actual_width + 1 <= layout.buffers_width and len(items) > 0 then
     local separatorPrefix = hl('BufferInactiveSign')
-    local separator = icons.bufferline_separator_inactive
+    local separator = icons.separator_inactive
     result = result .. separatorPrefix .. separator
   end
 
